@@ -21,4 +21,17 @@ function getInterview(state, interview) {
   return {student: interview.student, interviewer: interviewer}
 }
 
-module.exports = {getAppointmentsForDay, getInterview}
+function getInterviewersForDay(state, day) {
+  //... returns an array of interviewers for that day
+  const selectedDay = state.days.find(dayName => dayName.name === day)
+
+  if(!selectedDay) {
+    return []
+  }
+
+  const interviewersForDay = selectedDay.interviewers.map(id => state.interviewers[id])
+
+  return interviewersForDay
+  }
+
+module.exports = {getAppointmentsForDay, getInterview, getInterviewersForDay}
